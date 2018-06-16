@@ -1,0 +1,279 @@
+\NeedsTeXFormat{LaTeX2e}%															%%
+\ProvidesPackage{packages/tumtitlepageap1v0001}[2018/03/01]%	 	 				%%
+\ProcessOptions\relax%                                                              %%
+%% scrbook-macros, (Used: author, title, subtitle, dedication, uppertitleback,      %%
+%% lowertitleback, extratitle, subject, titlehead, publisher, date)                 %%
+%% responsible                                                                      %%
+\setkomafont{title}{\Huge\bfseries\boldmath}%                                       %%
+\setkomafont{subtitle}{\Large\bfseries\boldmath}%                                   %%
+\setkomafont{author}{\large\mdseries\unboldmath}%                                   %%
+%% The name of your university                                                      %%
+\newkomafont{TUMuniversity}{\unboldmath\mdseries\large}%                            %%
+\newcommand*{\TUM@university}{}%                                                    %%
+\newcommand{\TUMuniversity}[1]{\gdef\TUM@university{#1}}%                           %%
+%% The name of your department(eg. Engineering, Maths, Physics)                     %%
+\newkomafont{TUMdepartment}{\usekomafont{TUMuniversity}}%                           %%
+\newcommand*{\TUM@department}{}%                                                    %%
+\newcommand{\TUMdepartment}[1]{\gdef\TUM@department{#1}}%                           %%
+%% Defining the TUM logo                                                            %%
+\newcommand*{\TUM@logo}{}%                                                          %%
+\newcommand{\TUMlogo}[1]{\gdef\TUM@logo{#1}}%                                       %%
+%% Defining the physicslogo                                                         %%
+\newcommand*{\TUM@physicslogo}{}%                                                   %%
+\newcommand{\TUMphysicslogo}[1]{\gdef\TUM@physicslogo{#1}}%                         %%
+%% The year and term the degree will be officially conferred                        %%
+\newkomafont{TUMpracticaldate}{\usekomafont{TUMuniversity}}%                        %%
+\newcommand*{\TUM@practicaldate}{}%                                                 %%
+\newcommand{\TUMpracticaldate}[1]{\gdef\TUM@practicaldate{#1}}%                     %%
+%% Group                                                                            %%
+\newkomafont{TUMgroup}{\boldmath\bfseries\large}%                                   %%
+\newcommand*{\TUM@groupnumber}{}%                                                   %%
+\newcommand{\TUMgroupnumber}[1]{\gdef\TUM@groupnumber{#1}}%                         %%
+\newcommand*{\TUMtitlegrouptext}{}%                                                 %%
+\addto\extrasenglish{%                                                              %%
+    \renewcommand*{\TUMtitlegrouptext}{group}%                                      %%
+}%                                                                                  %%
+\addto\extrasnaustrian{%                                                            %%
+    \renewcommand*{\TUMtitlegrouptext}{gruppe}%                                     %%
+}%                                                                                  %%
+%% Team                                                                             %%
+\newkomafont{TUMteam}{\boldmath\bfseries\large}%                                    %%
+\newcommand*{\TUM@teamnumber}{}%                                                    %%
+\newcommand{\TUMteamnumber}[1]{\gdef\TUM@teamnumber{#1}}%                           %%
+\newcommand*{\TUMtitleteamtext}{}%                                                  %%
+\addto\extrasenglish{%                                                              %%
+    \renewcommand*{\TUMtitleteamtext}{team}%                                        %%
+}%                                                                                  %%
+\addto\extrasnaustrian{%                                                            %%
+    \renewcommand*{\TUMtitleteamtext}{team}%                                        %%
+}%                                                                                  %%
+%% Course                                                                           %%
+\newkomafont{TUMcourse}{\boldmath\bfseries\large}%                                  %%
+\newcommand*{\TUM@coursenumber}{}%                                                  %%
+\newcommand{\TUMcoursenumber}[1]{\gdef\TUM@coursenumber{#1}}%                       %%
+\newcommand*{\TUMtitlecoursetext}{}%                                                %%
+\addto\extrasenglish{%                                                              %%
+    \renewcommand*{\TUMtitlecoursetext}{course}%                                    %%
+}%                                                                                  %%
+\addto\extrasnaustrian{%                                                            %%
+    \renewcommand*{\TUMtitlecoursetext}{kurs}%                                      %%
+}%                                                                                  %%
+
+\def\and{\\}%
+\renewenvironment{titlepage}{%
+    \cleardoublepage%
+    \if@twocolumn%
+        \@restonecoltrue\onecolumn%
+    \else%
+        \@restonecolfalse\newpage%
+    \fi%
+    \thispagestyle{empty}%
+}{%
+    \if@restonecol\twocolumn \else \newpage \fi%
+}%
+
+
+\renewcommand*\maketitle[1][1]{%
+    %% if titlepage isn't defined:
+    \if@titlepage
+        \begin{titlepage}
+            \setcounter{page}{#1}%
+            \if@titlepageiscoverpage%
+                \edef\titlepage@restore{%
+                    \noexpand\endgroup
+                    \noexpand\global\noexpand\@colht\the\@colht
+                    \noexpand\global\noexpand\@colroom\the\@colroom
+                    \noexpand\global\vsize\the\vsize
+                    \noexpand\global\noexpand\@titlepageiscoverpagefalse
+                    \noexpand\let\noexpand\titlepage@restore\noexpand\relax
+                }%
+                \begingroup
+                \topmargin=\dimexpr \coverpagetopmargin-1in\relax
+                \oddsidemargin=\dimexpr \coverpageleftmargin-1in\relax
+                \evensidemargin=\dimexpr \coverpageleftmargin-1in\relax
+                \textwidth=\dimexpr
+                \paperwidth-\coverpageleftmargin-\coverpagerightmargin\relax
+                \textheight=\dimexpr
+                \paperheight-\coverpagetopmargin-\coverpagebottommargin\relax
+                \headheight=0pt
+                \headsep=0pt
+                \footskip=\baselineskip
+                \@colht=\textheight
+                \@colroom=\textheight
+                \vsize=\textheight
+                \columnwidth=\textwidth
+                \hsize=\columnwidth
+                \linewidth=\hsize
+            \else
+                \let\titlepage@restore\relax
+            \fi
+            \let\footnotesize\small
+            \let\footnoterule\relax
+            \let\footnote\thanks
+            \renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
+            \let\@oldmakefnmark\@makefnmark
+            \renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}%
+            \ifx\@extratitle\@empty \else
+                \noindent\@extratitle\next@tdpage
+            \fi
+            %% KOMA-Script-Standard v3.12
+            %% \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+            %% \ifx\@titlehead\@empty \else
+            %%     \begin{minipage}[t]{\textwidth}%
+            %%         \usekomafont{titlehead}{\@titlehead\par}%
+            %%     \end{minipage}\par
+            %% \fi
+            %% \null\vfill
+            %% \begin{center}
+            %%     \ifx\@subject\@empty \else
+            %%         {\usekomafont{subject}{\@subject\par}}%
+            %%         \vskip 3em
+            %%     \fi
+            %%     {\usekomafont{title}{\huge \@title\par}}%
+            %%     \vskip 1em
+            %%     {\ifx\@subtitle\@empty\else\usekomafont{subtitle}{\@subtitle\par}\fi}%
+            %%     \vskip 2em
+            %%     {%
+            %%         \usekomafont{author}{%
+            %%             \lineskip 0.75em
+            %%             \begin{tabular}[t]{c}
+            %%                 \@author
+            %%             \end{tabular}\par
+            %%         }%
+            %%     }%
+            %%     \vskip 1.5em
+            %%     {\usekomafont{date}{\@date \par}}%
+            %%     \vskip \z@ \@plus3fill
+            %%     {\usekomafont{publishers}{\@publishers \par}}%
+            %%     \vskip 3em
+            %% \end{center}\par
+            %% \@thanks\let\@thanks\@empty
+            %% \vfill\null
+            %% TUM-package-ap1
+            \begin{center}
+                %% Title
+                \begin{center}%
+                    {\ifx\@title\@empty\else%
+                        {\usekomafont{title}{\@title}}
+                    \fi}%
+                    {\ifx\@subtitle\@empty\else%
+                        \par\vskip 1em
+                        {\usekomafont{subtitle}{\@subtitle}}\par%
+                    \fi}%
+                \end{center}%
+                \vskip 1.5em
+                %% Logo / physicslogo             
+                \TUM@physicslogo\par%
+                \vskip 1.5em%
+                %% Author's
+                {%
+                    \begin{tabular}[t]{c}%
+                        {\usekomafont{TUMcourse}{{\expandafter\MakeUppercase \TUMtitlecoursetext}~\TUM@coursenumber}},~%
+                        {\usekomafont{TUMgroup}{{\expandafter\MakeUppercase \TUMtitlegrouptext}~\TUM@groupnumber}},~%
+                        {\usekomafont{TUMteam}{{\expandafter\MakeUppercase \TUMtitleteamtext}~\TUM@teamnumber}:}\\
+                        \usekomafont{author}\@author%
+                    \end{tabular}\par%
+                }%
+                \vskip 1.5em%
+                %% Department and University
+                {\usekomafont{TUMdepartment}{\TUM@department}}\par%
+                {\usekomafont{TUMuniversity}{\TUM@university}}\par%
+                %% TOC
+                \vspace*{\stretch{100}}%
+                \pdfbookmark[0]{\contentsname}{toc}%
+                \@starttoc{toc}%
+                \vspace{\stretch{100}}%
+                \hfill{\usekomafont{TUMpracticaldate}{\TUM@practicaldate}}%
+            \end{center}\par%
+            \@thanks\let\@thanks\@empty%
+            \vfill\null%
+            \if@twoside%
+                \next@tpage%
+                \begin{minipage}[t]{\textwidth}%
+                  \@uppertitleback%
+                \end{minipage}\par%
+                \vfill%
+                \begin{minipage}[b]{\textwidth}%
+                  \@lowertitleback%
+                \end{minipage}\par%
+                \@thanks\let\@thanks\@empty%
+            \fi%
+            \ifx\@dedication\@empty%
+            \else%
+                \next@tdpage\null\vfill%
+                {\centering\usekomafont{dedication}{\@dedication \par}}%
+                \vskip \z@ \@plus3fill%
+                \@thanks\let\@thanks\@empty%
+                \cleardoubleemptypage%
+            \fi%
+            \ifx\titlepage@restore\relax\else\clearpage\titlepage@restore\fi%
+        \end{titlepage}%
+    \else%
+        \par%
+        \@tempcnta=%
+        #1%
+        \relax\ifnum\@tempcnta=1\else
+            \ClassWarning{\KOMAClassName}{% 
+                Optional argument of \string\maketitle\space ignored 
+                at\MessageBreak 
+                notitlepage-mode%
+            }%
+        \fi%
+        \begingroup%
+            \let\titlepage@restore\relax%
+            \renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
+            \let\@oldmakefnmark\@makefnmark%
+            \renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}%
+            \next@tdpage%
+            \if@twocolumn%
+                \ifnum \col@number=\@ne%
+                  \ifx\@extratitle\@empty\else%
+                    \@makeextratitle%
+                    \next@tdpage%
+                  \fi%
+                  \@maketitle%
+                \else%
+                  \ifx\@extratitle\@empty\else%
+                    \twocolumn[\@makeextratitle]\next@tdpage%
+                  \fi%
+                  \twocolumn[\@maketitle]%
+                \fi%
+            \else%
+                \ifx\@extratitle\@empty\else%
+                  \@makeextratitle\next@tdpage%
+                \fi%
+                \@maketitle%
+            \fi%
+            \ifx\titlepagestyle\@empty\else\thispagestyle{\titlepagestyle}\fi%
+            \@thanks%
+        \endgroup%
+    \fi%
+    \setcounter{footnote}{0}%
+    \let\thanks\relax%
+    \let\maketitle\relax%
+    \let\@maketitle\relax
+    \global\let\@thanks\@empty
+    \global\let\@author\@empty
+    \global\let\@date\@empty
+    \global\let\@title\@empty
+    \global\let\@subtitle\@empty
+    \global\let\@extratitle\@empty
+    \global\let\@titlehead\@empty
+    \global\let\@subject\@empty
+    \global\let\@publishers\@empty
+    \global\let\@uppertitleback\@empty
+    \global\let\@lowertitleback\@empty
+    \global\let\@dedication\@empty
+    \global\let\author\relax
+    \global\let\title\relax
+    \global\let\extratitle\relax
+    \global\let\titlehead\relax
+    \global\let\subject\relax
+    \global\let\publishers\relax
+    \global\let\uppertitleback\relax
+    \global\let\lowertitleback\relax
+    \global\let\dedication\relax
+    \global\let\date\relax
+    \global\let\and\relax
+}%
+\endinput%																		  	%%

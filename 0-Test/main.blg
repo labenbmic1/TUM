@@ -1,0 +1,15 @@
+[0] Config.pm:354> INFO - This is Biber 2.7
+[0] Config.pm:357> INFO - Logfile is 'main.blg'
+[26] biber-MSWIN64:303> INFO - === 
+[58] Biber.pm:359> INFO - Reading 'main.bcf'
+[134] Biber.pm:835> INFO - Found 2 citekeys in bib section 0
+[146] Biber.pm:3670> INFO - Processing section 0
+[161] Biber.pm:3840> INFO - Looking for bibtex format file 'references/references.bib' for section 0
+[191] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[196] bibtex.pm:1292> INFO - Found BibTeX data source 'references/references.bib'
+[212] UCollate.pm:68> INFO - Overriding locale 'de-AT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[213] UCollate.pm:68> INFO - Overriding locale 'de-AT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[213] Biber.pm:3499> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'de-AT'
+[213] Biber.pm:3505> INFO - No sort tailoring available for locale 'de-AT'
+[214] bbl.pm:608> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[215] bbl.pm:712> INFO - Output to main.bbl
